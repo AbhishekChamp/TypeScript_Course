@@ -1,19 +1,15 @@
-// const person: {
-//     name: string;
-//     age: number;
-// } = {
-//     name: "Abhishek",
-//     age: 25,
-// };
+let userInput: unknown;
+let userName: string;
 
-const person = {
-    name: "Abhishek",
-    age: 25,
-    hobbies: ["Sports", "Coding"],
-};
+userInput = 5;
+userInput = "Abhishek";
 
-console.log(person);
-
-for (const hobby of person.hobbies) {
-    console.log(hobby.toLowerCase());
+if (typeof userInput === "string") {
+    userName = userInput;
 }
+
+function generateError(message: string, code: number): never {
+    throw { message: message, errorCode: code };
+}
+
+generateError("An Error Occurred", 500);
