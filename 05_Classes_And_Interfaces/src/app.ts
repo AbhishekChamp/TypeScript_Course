@@ -1,33 +1,39 @@
-class Department {
-    // private id: string
-    // private name: string;
-    private employees: string[] = [];
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+    (a: number, b: number): number;
+}
 
-    constructor(private readonly id: string, public name: string) {
-        // this.id = id
-        // this.name = name;
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+    return n1 + n2;
+};
+
+interface Named {
+    readonly name: string;
+}
+
+interface Greetable extends Named {
+    greet(phase: string): void;
+}
+
+class Person implements Greetable {
+    name: string;
+    age = 25;
+
+    constructor(n: string) {
+        this.name = n;
     }
 
-    describe(this: Department) {
-        console.log(`Department (${this.id}): ${this.name}`);
-    }
-
-    addEmployee(employee: string) {
-        this.employees.push(employee);
-    }
-
-    printEmployeeInformation() {
-        console.log(this.employees.length);
-        console.log(this.employees);
+    greet(phrase: string): void {
+        console.log(phrase + " " + this.name);
     }
 }
 
-const accounting = new Department("id1", "Accounting");
+let user1: Greetable;
 
-accounting.addEmployee("Abhishek");
-accounting.addEmployee("Champ");
+user1 = new Person("Abhishek");
 
-console.log(accounting);
+user1.greet("Hi There - I am");
 
-accounting.describe();
-accounting.printEmployeeInformation();
+console.log(add(8, 9));
